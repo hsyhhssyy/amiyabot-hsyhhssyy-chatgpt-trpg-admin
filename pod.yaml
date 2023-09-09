@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: amiyabot-hsyhhssyy-chatgpt-trpg-admin
+  name: amiyabot-player-rating-standalone
   namespace: amiya-bot
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: amiyabot-hsyhhssyy-chatgpt-trpg-admin
+      app: amiyabot-player-rating-standalone
   template:
     metadata:
       labels:
-        app: amiyabot-hsyhhssyy-chatgpt-trpg-admin
+        app: amiyabot-player-rating-standalone
     spec:
       containers:
         - command:
@@ -21,9 +21,9 @@ spec:
           env:
             - name: TZ
               value: Asia/Shanghai
-          image: harbor.hsyhhssyy.net/home-esxi/amiyabot-hsyhhssyy-chatgpt-trpg-admin:1
+          image: harbor.hsyhhssyy.net/home-esxi/amiyabot-player-rating-standalone:1
           imagePullPolicy: Always
-          name: amiyabot-hsyhhssyy-chatgpt-trpg-admin
+          name: amiyabot-player-rating-standalone
           ports:
             - containerPort: 80
               name: http
