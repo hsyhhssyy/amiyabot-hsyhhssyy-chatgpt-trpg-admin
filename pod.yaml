@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amiyabot-hsyhhssyy-chatgpt-trpg-admin
+  namespace: amiya-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: amiyabot-hsyhhssyy-chatgpt-trpg-admin
+  template:
+    metadata:
+      labels:
+        app: amiyabot-hsyhhssyy-chatgpt-trpg-admin
+    spec:
+      containers:
+        - command:
+            - nginx
+            - '-g'
+            - 'daemon off;'
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+          image: harbor.hsyhhssyy.net/home-esxi/amiyabot-hsyhhssyy-chatgpt-trpg-admin:1
+          imagePullPolicy: Always
+          name: amiyabot-hsyhhssyy-chatgpt-trpg-admin
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      imagePullSecrets:
+        - name: harbor.hsyhhssyy.net
