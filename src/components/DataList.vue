@@ -1,31 +1,36 @@
 <template>
-  <ul>
-    <li 
+  <div class="list-box">
+    <div 
       v-for="item in dataList" 
       :key="item.DisplayText"
       :class="{ 'is-selected': item === currentData }"
       @click="selectData(item)"
     >
       {{ item.DisplayText }}
-    </li>
-  </ul>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
+import type {MappedData} from '../components/DataList';
 
 const emit = defineEmits();
 defineProps<{
-  dataList: { DisplayText: string, Data: any }[]
+  dataList: MappedData[]
   currentData: any;
 }>();
 
-const selectData = (data: { DisplayText: string, Data: any }) => {
+const selectData = (data: MappedData) => {
   emit('selectData', data);
 };
 </script>
 
 <style>
+.list-box{
+  padding: 10px;
+}
   .is-selected {
-    background-color: #f0f0f0;
+    background-color: #8a8a8ad3;
+    text-align: center;
   }
 </style>

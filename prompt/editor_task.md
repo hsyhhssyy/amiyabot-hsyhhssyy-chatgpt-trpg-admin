@@ -1,3 +1,5 @@
+下面是我写的一段物品属性编辑器的vue代码,将一个json字符串展示在文本框中
+
 <template>
   <div>
     <textarea v-model="jsonString" rows="10" cols="50"></textarea>
@@ -32,3 +34,5 @@ const handleSave = () => {
   }
 };
 </script>
+
+其中,jsonString的典型值为 '[{"名称": "血书", "数量": 3, "单位": "份", "情报": []}, {"名称": "释迦阿米娅的签名", "数量": 3, "单位": "份", "情报": []}]'
