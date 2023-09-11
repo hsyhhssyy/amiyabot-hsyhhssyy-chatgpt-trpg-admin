@@ -18,6 +18,7 @@ import DataList from '../../components/DataList.vue';
 import type { MappedData } from '../../components/DataList';
 import ItemEditor from '../../components/ItemEditor.vue';
 import { getParamHistory,insertParamHistory } from '../../services/apiService'
+import { ElMessage } from 'element-plus';
 
 const dataList = ref<MappedData[]>([]);
 const selectedData = ref<MappedData | null>(null);
@@ -30,11 +31,6 @@ const refreshData = async () => {
     Data: d,
   }));
 
-  if (Array.isArray(dataList.value) && dataList.value.length > 0) {
-    selectedData.value = dataList.value[0];
-  } else {
-    selectedData.value = null;
-  }
 }
 
 onMounted(async () => {
@@ -48,6 +44,10 @@ const selectData = (data: any) => {
 const updateParamValue = async (newValue: string) => {
   await insertParamHistory("item_info",newValue)
   await refreshData();
+  ElMessage({
+    message: '保存完成',
+    type: 'success',
+  })
 };
 
 </script>

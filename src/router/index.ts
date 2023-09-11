@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import EmptyFeature from '../views/EmptyFeature.vue'
 import ItemEditTab from '../views/tabs/ItemEditTab.vue'
 import EnvEditTab from '../views/tabs/EnvEditTab.vue'
+import SpeechLog from '../views/tabs/SpeechLog.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -16,6 +17,10 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     component: Home,
     children: [
+      {
+        path: '/speech-log',
+        component: SpeechLog,
+      },
       {
         path: '/item-edit',
         component: ItemEditTab,
