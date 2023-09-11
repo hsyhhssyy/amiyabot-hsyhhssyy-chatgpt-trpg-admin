@@ -1,7 +1,7 @@
 <template>
   <div class="list-box">
     <div 
-      v-for="item in dataList" 
+      v-for="item in sortedDataList" 
       :key="item.DisplayText"
       :class="{ 'is-selected': item === currentData }"
       @click="selectData(item)"
@@ -12,13 +12,23 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import type {MappedData} from '../components/DataList';
 
 const emit = defineEmits();
-defineProps<{
-  dataList: MappedData[]
-  currentData: any;
+const props = defineProps<{
+  dataList: MappedData[]|null;
+  currentData: MappedData|null;
 }>();
+
+// 从大到小排序
+const sortedDataList = computed(() => {
+  if(props.dataList){
+    return [...props.dataList].sort((a, b) => b.DisplayText.localeCompare(a.DisplayText));
+  }else{
+    return props.dataList
+  }
+});
 
 const selectData = (data: MappedData) => {
   emit('selectData', data);
@@ -29,8 +39,8 @@ const selectData = (data: MappedData) => {
 .list-box{
   padding: 10px;
 }
-  .is-selected {
-    background-color: #8a8a8ad3;
-    text-align: center;
-  }
+.is-selected {
+  background-color: #8a8a8ad3;
+  text-align: center;
+}
 </style>

@@ -2,15 +2,15 @@
   <el-container>
     <el-header>
       <div class="header-content">
-        <div class="logo">您的Logo</div>
-        <div class="user-avatar">用户头像</div>
+        <div class="logo">兔兔TRPG管理后台</div>
+        <div class="user-avatar">兔兔可爱</div>
       </div>
     </el-header>
     <el-container class="aside-container">
       <el-aside width="200px">
         <el-menu :router="true" class="aside-menu">
-          <el-menu-item index="/item-edit">编辑物品</el-menu-item>
-          <el-menu-item index="/empty-feature">编辑其他</el-menu-item>
+          <el-menu-item index="/env-edit">编辑世界观(EnvInfo)</el-menu-item>
+          <el-menu-item index="/item-edit">编辑物品(ItemInfo)</el-menu-item>
           <el-menu-item index="/logout" class="logout-item">登出</el-menu-item>
         </el-menu>
       </el-aside>
