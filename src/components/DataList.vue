@@ -1,7 +1,7 @@
 <template>
   <div class="list-box">
     <div 
-      v-for="item in sortedDataList" 
+      v-for="item in sortedList" 
       :key="item.DisplayText"
       :class="{ 'is-selected': item === localCurrentData }"
       @click="selectData(item)"
@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue';
+import { ref, watch } from 'vue';
 import type { MappedData } from '../components/DataList';
 
 const emit = defineEmits();
@@ -22,19 +22,15 @@ const props = defineProps<{
 }>();
 
 const localCurrentData = ref<MappedData | null>(null);
+const sortedList = ref<MappedData[] >([]);
 
-// 从大到小排序
-const sortedDataList = computed(() => {
-  if (props.dataList) {
-    const sortedList = [...props.dataList].sort((a, b) => b.DisplayText.localeCompare(a.DisplayText));
+watch(() => props.dataList, (newData) => {
+  if (newData) {
+    sortedList.value = [...newData].sort((a, b) => b.DisplayText.localeCompare(a.DisplayText));
     // 更新 localCurrentData 为排序后的第一项
-    localCurrentData.value = sortedList[0] || null;
+    localCurrentData.value = sortedList.value[0] || null;
     emit('selectData', localCurrentData.value);
-    return sortedList;
-  } else {
-    localCurrentData.value = null;
-    return null;
-  }
+  } 
 });
 
 watch(() => props.currentData, (newData) => {

@@ -5,6 +5,8 @@ import EmptyFeature from '../views/EmptyFeature.vue'
 import ItemEditTab from '../views/tabs/ItemEditTab.vue'
 import EnvEditTab from '../views/tabs/EnvEditTab.vue'
 import SpeechLog from '../views/tabs/SpeechLog.vue'
+import DeepCosplayViewMainTemplate from '@src/views/tabs/deepCosplay/ViewMainTemplate.vue'
+import DeepCosplayViewExecutionLog from '@src/views/tabs/deepCosplay/ViewExecutionLog.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -17,6 +19,14 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     component: Home,
     children: [
+      {
+        path: '/deepcosplay-main-template',
+        component: DeepCosplayViewMainTemplate,
+      },
+      {
+        path: '/deepcosplay-view-execution-log',
+        component: DeepCosplayViewExecutionLog,
+      },
       {
         path: '/speech-log',
         component: SpeechLog,
