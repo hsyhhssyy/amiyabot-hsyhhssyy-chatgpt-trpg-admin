@@ -6,7 +6,7 @@
 
         <!-- 右侧组件 -->
         <div class="right-panel">
-            <DeepCosplayEditor :data="selectedData" @execute="updateParamValue" />
+            <DeepCosplayEditor :data="selectedData" @executed="executed" />
         </div>
     </div>
 </template>
@@ -16,10 +16,9 @@ import { ref, onMounted } from 'vue';
 import DataList from '@src/components/DataList.vue';
 import type { MappedData } from '@src/components/DataList';
 import DeepCosplayEditor from '@src/components/editors/DeepCosplayExecutionLogReadonlyEditor.vue';
-import { getExecutionLog, insertParamHistory } from '@src/services/apiService'
+import { getExecutionLog } from '@src/services/apiService'
 import { ElMessage } from 'element-plus';
 
-const selectedTemplate = ref("")
 const dataList = ref<MappedData[]>([]);
 const selectedData = ref<MappedData | null>(null);
 
@@ -41,11 +40,11 @@ const selectData = (data: any) => {
     selectedData.value = data;
 };
 
-const updateParamValue = async (newValue: string) => {
-    await insertParamHistory(selectedTemplate.value, newValue, "deep-cosplay")
+const executed = async () => {
+    console.log("executed")
     await refreshData();
     ElMessage({
-        message: '保存完成',
+        message: '执行完成',
         type: 'success',
     })
 };

@@ -2,7 +2,7 @@
   <el-container>
     <el-header>
       <div class="header-content">
-        <div class="logo">兔兔TRPG管理后台</div>
+        <div class="logo">兔兔ChatGPT插件管理后台</div>
         <a href="/">
           <div class="user-avatar">登出</div>
         </a>
@@ -18,7 +18,7 @@
             <el-menu-item index="/deepcosplay-view-execution-log">对话日志</el-menu-item>
             <el-menu-item index="/deepcosplay-main-template">编辑主模板(Character)</el-menu-item>
           </el-sub-menu>
-          <el-sub-menu index="roleplay-mode">
+          <el-sub-menu index="trpg-mode">
             <template #title>
               <span>跑团模式</span>
             </template>

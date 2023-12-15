@@ -61,3 +61,19 @@ export const insertParamHistory = async (param_name: string, param_value: string
     }
   });
 };
+
+export const insertExecutionLog = async (dataJson: string, template_name:string, template_value:string, model:string, team_uuid: string = "test-team") => {
+  await axios.post("/trpgapi/insertExecutionLog", {
+    team_uuid: team_uuid,
+    channel_id:"test-channel",
+    channel_name:"test-channel-name",
+    template_name:template_name,
+    template_value: template_value,
+    data: dataJson,
+    model:model,
+  }, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+}
