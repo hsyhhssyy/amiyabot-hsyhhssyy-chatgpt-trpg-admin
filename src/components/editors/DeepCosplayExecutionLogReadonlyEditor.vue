@@ -29,7 +29,7 @@
                     <el-input class="text-input" type="textarea" v-model="textAreaTemplate"></el-input>
                 </el-form-item>             
                 <el-form-item class="form-button-item">
-                    <el-button class="form-button" type="primary" @click="handleExecute" :disabled="isExecuting">重新执行</el-button>
+                    <el-button class="form-button" :type="isExecuting?'secondary':'primary'" @click="handleExecute" :disabled="isExecuting">重新执行</el-button>
                 </el-form-item>
             </el-form>
         </el-col>
@@ -38,9 +38,10 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { insertExecutionLog } from '@src/services/apiService'
+import emitter from '@src/eventBus/mitt';
+import { ElMessage } from 'element-plus';
 
 const props = defineProps<{ data: any }>();
-const emit = defineEmits();
 
 const tableData = ref([
     { key: 'Key1', value: 'Value1' },
@@ -93,8 +94,9 @@ const handleExecute = async () => {
         
         console.log("handleExecute")
         await insertExecutionLog(dataJson, props.data.Data.template_name, template, props.data.Data.model,"deep-cosplay")
-        
-        emit('executed');
+
+        emitter.emit('execution-log-updated');
+        ElMessage.success("执行成功")
     } catch (error: any) {
         console.log(error)
     }finally{
