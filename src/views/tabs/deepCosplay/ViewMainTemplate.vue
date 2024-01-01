@@ -31,6 +31,10 @@ const options = [
     label: 'amiya-template-v4',
   },
   {
+    value: 'TEMPLATE-amiya-template-v5',
+    label: 'amiya-template-v5',
+  },
+  {
     value: 'TEMPLATE-topic-template-v1',
     label: 'topic-template-v1',
   }

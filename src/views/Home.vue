@@ -1,15 +1,22 @@
 <template>
   <el-container>
-    <el-header>
+    <el-header class="header-bar">
       <div class="header-content">
-        <div class="logo">兔兔ChatGPT插件管理后台</div>
+        <div class="logo-area">
+          <el-button @click="openDrawer">
+            <el-icon class="toggle-button">
+              <Menu />
+            </el-icon>
+          </el-button>
+          <div class="logo">兔兔ChatGPT插件管理后台</div>
+        </div>
         <a href="/">
           <div class="user-avatar">登出</div>
         </a>
       </div>
     </el-header>
     <el-container class="aside-container">
-      <el-aside width="200px">
+      <el-drawer width="200px" v-model="isDrawerOpen" direction="ltr">
         <el-menu :router="true" class="aside-menu">
           <el-sub-menu index="roleplay-mode">
             <template #title>
@@ -27,7 +34,7 @@
             <el-menu-item index="/item-edit">编辑物品(ItemInfo)</el-menu-item>
           </el-sub-menu>
         </el-menu>
-      </el-aside>
+      </el-drawer>
 
       <el-main>
         <router-view></router-view>
@@ -36,18 +43,19 @@
   </el-container>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { ref, } from 'vue';
 
-export default defineComponent({
-  setup() {
-    // 逻辑代码
-  },
-});
+const isDrawerOpen = ref(false);
+
+const openDrawer = () => {
+  isDrawerOpen.value = !isDrawerOpen.value;
+};
+
 </script>
 
 <style scoped>
-.el-header {
+.header-bar {
   background-color: #b3c0d1;
   color: white;
   text-align: center;
@@ -57,6 +65,11 @@ export default defineComponent({
 .header-content {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.logo-area {
+  display: flex;
   align-items: center;
 }
 

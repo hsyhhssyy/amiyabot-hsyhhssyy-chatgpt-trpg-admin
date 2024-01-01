@@ -7,10 +7,10 @@
             <p class="disclaimer">本网站<b style="color: red;">不是</b>鹰角网络或腾讯下属的官方网站。</p>
             <el-form label-width="100px">
                 <el-form-item label="服务器地址：">
-                    <el-input v-model="email" placeholder="Email"></el-input>
+                    <el-input v-model="email" placeholder="AmiayBot服务地址"></el-input>
                 </el-form-item>
-                <el-form-item label="链接密钥：">
-                    <el-input type="password" v-model="password" placeholder="Password"></el-input>
+                <el-form-item label="连接密钥：">
+                    <el-input type="password" v-model="password" placeholder="AmiyaBot服务秘钥"></el-input>
                 </el-form-item>
                 <el-form-item>
                     <div class="button-container">
