@@ -79,6 +79,11 @@ watch(() => props.data, (newData) => {
 
 const preprocessData = (value: string) => {
     const maxLines = 10;
+
+    if(value==null){
+        return [""]
+    }
+
     const lines = value.split(/\n/);
     if (lines.length > maxLines) {
         return lines.slice(0, maxLines).concat('...');

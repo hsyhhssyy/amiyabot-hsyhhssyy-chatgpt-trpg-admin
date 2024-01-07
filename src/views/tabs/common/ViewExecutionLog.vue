@@ -1,7 +1,12 @@
 <template>
     <div class="container">
         <div class="left-panel">
-            <ExecutionLogDataList teamUuid="deep-cosplay" v-model="selectedData"/>
+            <!-- 添加下拉框 -->
+            <el-select class="data-select" v-model="selectedTeam" placeholder="请选择" @change="dataSelectChange">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                </el-option>
+            </el-select>
+            <ExecutionLogDataList :teamUuid="selectedTeam" v-model="selectedData"/>
         </div>
 
         <!-- 右侧组件 -->
@@ -12,12 +17,36 @@
 </template>
     
 <script setup lang="ts">
-import { ref, } from 'vue';
+import { ref,onMounted } from 'vue';
 import ExecutionLogDataList from '@src/components/lists/ExecutionLogDataList.vue';
 import type { MappedData } from '@src/components/DataList';
+import { listTeam } from '@src/services/apiService'
 import DeepCosplayEditor from '@src/components/editors/ExecutionLogEditor.vue';
 
+const options = ref<any[]>([]);
+const selectedTeam = ref("")
+
 const selectedData = ref<MappedData | null>(null);
+
+const dataSelectChange = async () => {
+    //selectedTeam.value = selectedTeam.value
+}
+
+onMounted(async () => {
+  await refreshData();
+});
+
+const refreshData = async () => {
+    var listResponse = await listTeam()
+    options.value = listResponse.map((d: any) => ({
+        label: d.team_uuid,
+        value: d.team_uuid,
+    }));
+    // 按名称排序
+    options.value.sort((a: any, b: any) => {
+        return a.value.localeCompare(b.value)
+    })
+}
 
 </script>
     

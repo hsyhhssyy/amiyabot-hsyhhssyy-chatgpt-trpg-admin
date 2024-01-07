@@ -17,6 +17,22 @@ export const listParam = async (team_uuid: string = "test-team") => {
     }
   }
 
+export const listTeam = async () => {
+    
+    const response = await axios.post("/trpgapi/listTeam", {
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  
+    if (response.data.data.success === true) {
+      return response.data.data.team_list;
+    } else {
+      return []
+    }
+  }
+
 export const getParamHistory = async (param_name: string, team_uuid: string = "test-team") => {
 
   const response = await axios.post("/trpgapi/getParamHistoryByName", {

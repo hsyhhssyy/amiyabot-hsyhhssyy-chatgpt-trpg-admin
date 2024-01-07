@@ -30,7 +30,7 @@ const refreshData = async () => {
 
     console.log("refreshData");
 
-    var dataResponse = await getExecutionLog("deep-cosplay")
+    var dataResponse = await getExecutionLog(teamUuid.value)
 
     var dataList = dataResponse.map((d: any): MappedData => ({
         DisplayText: d.create_at,
