@@ -13,6 +13,15 @@ spec:
       labels:
         app: amiyabot-hsyhhssyy-chatgpt-trpg-admin
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: location
+                    operator: NotIn
+                    values:
+                      - aliyun
       containers:
         - command:
             - nginx
