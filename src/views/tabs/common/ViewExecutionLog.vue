@@ -15,7 +15,7 @@
 import { ref, } from 'vue';
 import ExecutionLogDataList from '@src/components/lists/ExecutionLogDataList.vue';
 import type { MappedData } from '@src/components/DataList';
-import DeepCosplayEditor from '@src/components/editors/DeepCosplayExecutionLogReadonlyEditor.vue';
+import DeepCosplayEditor from '@src/components/editors/ExecutionLogEditor.vue';
 
 const selectedData = ref<MappedData | null>(null);
 

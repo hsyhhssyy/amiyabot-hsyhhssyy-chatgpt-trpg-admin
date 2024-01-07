@@ -21,24 +21,12 @@
 import { ref, onMounted } from 'vue';
 import DataList from '@src/components/DataList.vue';
 import type { MappedData } from '@src/components/DataList';
-import MainTemplateEditor from '@src/components/editors/DeepCosplayMainTemplateEditor.vue';
-import { getParamHistory, insertParamHistory } from '@src/services/apiService'
+import MainTemplateEditor from '@src/components/editors/TemplateEditor.vue';
+import { getParamHistory, insertParamHistory, listParam } from '@src/services/apiService'
 import { ElMessage } from 'element-plus';
 
-const options = [
-  {
-    value: 'TEMPLATE-amiya-template-v4',
-    label: 'amiya-template-v4',
-  },
-  {
-    value: 'TEMPLATE-amiya-template-v5',
-    label: 'amiya-template-v5',
-  },
-  {
-    value: 'TEMPLATE-topic-template-v1',
-    label: 'topic-template-v1',
-  }
-];
+const options = ref<any[]>([]);
+
 const selectedTemplate = ref("")
 const dataList = ref<MappedData[]>([]);
 const selectedData = ref<MappedData | null>(null);
@@ -48,7 +36,26 @@ const dataSelectChange = async () => {
 }
 
 const refreshData = async () => {
-  var dataResponse = await getParamHistory(selectedTemplate.value, "deep-cosplay")
+
+  var listResponse = await listParam()
+
+  //创建Option
+  //label: d.param_name 移除开头的 "TEMPLATE-" 再拼接 d.team_uuid,
+  
+  options.value = listResponse.map((d: any) => ({
+    label: d.param_name.replace("TEMPLATE-", "") + " (" + d.team_uuid + ")",
+    value: d.param_name,
+    teamUuid: d.team_uuid,
+  }));
+
+  // 按名称排序
+  options.value.sort((a: any, b: any) => {
+    return a.value.localeCompare(b.value)
+  })
+
+  // find options 
+  const selectedUUid = options.value.find((d: any) => d.value == selectedTemplate.value).teamUuid
+  var dataResponse = await getParamHistory(selectedTemplate.value, selectedUUid)
 
   dataList.value = dataResponse.map((d: any): MappedData => ({
     DisplayText: d.create_at,

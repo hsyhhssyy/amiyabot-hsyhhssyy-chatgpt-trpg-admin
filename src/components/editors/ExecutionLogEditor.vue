@@ -62,7 +62,8 @@ const refreshData = async (newData: any) => {
             return { key: key, value: dataJson[key] }
         })
         textAreaOne.value = newData.Data.raw_request
-        textAreaTwo.value = newData.Data.raw_response
+        var formattedStr = decodeURIComponent(newData.Data.raw_response);
+        textAreaTwo.value = formattedStr
         
         textAreaTemplate.value = newData.Data.template_value
 

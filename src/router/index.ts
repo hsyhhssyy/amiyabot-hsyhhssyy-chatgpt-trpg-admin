@@ -1,12 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Login from '../views/Login.vue'
 import Home from '../views/Home.vue'
-import EmptyFeature from '../views/EmptyFeature.vue'
-import ItemEditTab from '../views/tabs/ItemEditTab.vue'
-import EnvEditTab from '../views/tabs/EnvEditTab.vue'
-import SpeechLog from '../views/tabs/SpeechLog.vue'
-import DeepCosplayViewMainTemplate from '@src/views/tabs/deepCosplay/ViewMainTemplate.vue'
-import DeepCosplayViewExecutionLog from '@src/views/tabs/deepCosplay/ViewExecutionLog.vue'
+import SpeechLog from '../views/tabs/trpg/SpeechLog.vue'
+import ViewTemplate from '@src/views/tabs/common/ViewTemplate.vue'
+import ViewExecutionLog from '@src/views/tabs/common/ViewExecutionLog.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -20,29 +17,17 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
     children: [
       {
-        path: '/deepcosplay-main-template',
-        component: DeepCosplayViewMainTemplate,
+        path: '/template-editor',
+        component: ViewTemplate,
       },
       {
-        path: '/deepcosplay-view-execution-log',
-        component: DeepCosplayViewExecutionLog,
+        path: '/view-execution-log',
+        component: ViewExecutionLog,
       },
       {
         path: '/speech-log',
         component: SpeechLog,
-      },
-      {
-        path: '/item-edit',
-        component: ItemEditTab,
-      }, 
-      {
-        path: '/env-edit',
-        component: EnvEditTab,
-      },
-      {
-        path: '/empty-feature',
-        component: EmptyFeature,
-      },
+      }
     ],
   },
 ]

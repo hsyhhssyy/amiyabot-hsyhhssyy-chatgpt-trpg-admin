@@ -18,20 +18,18 @@
     <el-container class="aside-container">
       <el-drawer width="200px" v-model="isDrawerOpen" direction="ltr">
         <el-menu :router="true" class="aside-menu">
-          <el-sub-menu index="roleplay-mode">
+          <el-sub-menu index="common">
             <template #title>
-              <span>角色扮演</span>
+              <span>通用设置</span>
             </template>
-            <el-menu-item index="/deepcosplay-view-execution-log">对话日志</el-menu-item>
-            <el-menu-item index="/deepcosplay-main-template">编辑模板</el-menu-item>
+            <el-menu-item index="/view-execution-log">执行日志</el-menu-item>
+            <el-menu-item index="/template-editor">编辑模板</el-menu-item>
           </el-sub-menu>
           <el-sub-menu index="trpg-mode">
             <template #title>
               <span>跑团模式</span>
             </template>
-            <el-menu-item index="/speech-log">对话日志</el-menu-item>
-            <el-menu-item index="/env-edit">编辑世界观(EnvInfo)</el-menu-item>
-            <el-menu-item index="/item-edit">编辑物品(ItemInfo)</el-menu-item>
+            <el-menu-item index="/speech-log">对话记录</el-menu-item>
           </el-sub-menu>
         </el-menu>
       </el-drawer>

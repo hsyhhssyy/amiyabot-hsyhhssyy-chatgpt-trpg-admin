@@ -33,7 +33,7 @@
   
 <script setup lang="ts">
 import { ref,onMounted,nextTick } from 'vue';
-import { getSpeechLog } from '../../services/apiService'
+import { getSpeechLog } from '@src/services/apiService'
 
 interface ChatRecord {
     id: number;
@@ -72,7 +72,7 @@ onMounted(async () => {
     max-width: 800px;
     margin: auto;
     overflow-y: auto;
-    height: 100vh;
+    height: 80vh;
 }
 
 .channel-divider {
