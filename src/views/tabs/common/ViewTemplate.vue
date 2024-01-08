@@ -3,7 +3,7 @@
     <div class="left-panel">
       <!-- 添加下拉框 -->
       <el-select class="data-select" v-model="selectedTemplate" placeholder="请选择" @change="dataSelectChange">
-        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+        <el-option v-for="item in options" :key="item.label" :label="item.label" :value="item.value">
         </el-option>
       </el-select>
 
@@ -50,12 +50,12 @@ const refreshData = async () => {
 
   // 按名称排序
   options.value.sort((a: any, b: any) => {
-    return a.value.localeCompare(b.value)
+    return a.label.localeCompare(b.label)
   })
 
   // find options 
-  const selectedUUid = options.value.find((d: any) => d.value == selectedTemplate.value).teamUuid
-  var dataResponse = await getParamHistory(selectedTemplate.value, selectedUUid)
+  const selectedTemplateObj = options.value.find((d: any) => d.label == selectedTemplate.value)
+  var dataResponse = await getParamHistory(selectedTemplateObj.value, selectedTemplateObj.teamUuid)
 
   dataList.value = dataResponse.map((d: any): MappedData => ({
     DisplayText: d.create_at,
